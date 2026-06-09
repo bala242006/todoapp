@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskFlow</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🚀 TaskFlow</h1>
+        <p>Organize your day smarter</p>
+    </div>
+
+    <form action="/add" method="POST" class="task-form">
+
+        <input
+            type="text"
+            name="task"
+            placeholder="What needs to be done?"
+            required>
+
+        <button type="submit">
+            ➕ Add
+        </button>
+
+    </form>
+
+    {% if tasks %}
+
+        <ul class="task-list">
+
+            {% for task in tasks %}
+
+            <li>
+
+                <span class="{% if task.completed %}completed{% endif %}">
+                    {{ task.title }}
+                </span>
+
+                <div class="actions">
+
+                    <form action="/complete/{{ task.id }}" method="POST">
+
+                        <button class="done-btn" type="submit">
+
+                            {% if task.completed %}
+                                ↩️
+                            {% else %}
+                                ✓
+                            {% endif %}
+
+                        </button>
+
+                    </form>
+
+                    <form action="/delete/{{ task.id }}"
+                          method="POST"
+                          onsubmit="return confirm('Delete this task?');">
+
+                        <button class="delete-btn" type="submit">
+                            🗑️
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <div class="stats">
+            Total Tasks: {{ tasks|length }}
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+            🎉 No tasks yet! Add one to get started.
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

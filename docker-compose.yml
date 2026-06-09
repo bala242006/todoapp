@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    expose:
+      - "5000"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: taskflow-mysql
+    env_file:
+      - .env
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  nginx:
+    build: ./nginx
+    container_name: taskflow-nginx
+    ports:
+      - "8099:80"
+    depends_on:
+      - app
+
+volumes:
+  mysql-data:

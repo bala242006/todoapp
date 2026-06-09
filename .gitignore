@@ -1,0 +1,44 @@
+__pycache__/
+*.pyc
+.env
+
+
+
+
+
+
+
+
+
+
+                                                          
+
+
+
+
+
+
+
+
+
+
+
+
+                                                      [ New File ]
+^G Help        ^O Write Out   ^W Where Is    ^K Cut         ^T Execute     ^C Location    M-U Undo       M-A Set Mark
+^X Exit        ^R Read File   ^\ Replace     ^U Paste       ^J Justify    
+
+
+
+
+
+
+
+
+
+
+
+
+                                                      [ New File ]
+^G Help        ^O Write Out   ^W Where Is    ^K Cut         ^T Execute     ^C Location    M-U Undo       M-A Set Mark
+^X Exit        ^R Read File   ^\ Replace     ^U Paste       ^J Justify    
